@@ -22,8 +22,10 @@ notes/                              # Documentation deliverables
 ├── ai-usage.md                     # AI tools usage report
 ├── manual-scenarios.md             # Manual QA scenarios & Edge cases
 pom.xml                             # Maven dependencies and configuration
+```
+ף
 
-## 🚀 Getting Started
+##  🚀 Getting Started
 
 ### Prerequisites
 Ensure you have the following installed:
@@ -54,11 +56,11 @@ To run the tests with your own user:
 To execute all tests:
 ```bash
 mvn test
-
+```
 To run only the Agentic UX flow test:
 ```bash
 mvn -Dtest=AgenticFlowTest test
-
+```
 ### Option 2: Via IDE (IntelliJ / VS Code)
 * Navigate to `src/test/java/ai/foldspace/tests/AgenticFlowTest.java`.
 * Click the **Run** icon (Green triangle) next to the class name or the `@Test` method.
