@@ -29,6 +29,12 @@ public class LoginTest {
         loginPage.navigate(); 
         loginPage.login("yelitzur@g.jct.ac.il", "199Yse5!"); 
 
+        try {
+            page.waitForURL(url -> !url.contains("login"), new Page.WaitForURLOptions().setTimeout(10000));
+        } catch (Exception e) {
+            // If 10 seconds have passed and we are still logged in - it will fail here
+        }
+        
         // Assertions 
         // 1. Checking the URL change (makes sure we are no longer on the login page)
         assertTrue(page.url().contains("dashboard") || !page.url().contains("login"), 
