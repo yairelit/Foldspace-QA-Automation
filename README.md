@@ -23,7 +23,7 @@ notes/                              # Documentation deliverables
 ├── manual-scenarios.md             # Manual QA scenarios & Edge cases
 pom.xml                             # Maven dependencies and configuration
 ```
-ף
+
 
 ##  🚀 Getting Started
 
@@ -35,7 +35,7 @@ Ensure you have the following installed:
 ### Installation
 1.  Clone the repository:
     ```bash
-    git clone <https://github.com/yairelit/Foldspace-QA-Automation>
+    git clone https://github.com/yairelit/Foldspace-QA-Automation
     cd Foldspace-QA-Automation
     ```
 2.  Install dependencies and browsers:
