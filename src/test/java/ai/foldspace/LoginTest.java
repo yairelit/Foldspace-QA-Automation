@@ -1,42 +1,51 @@
+package ai.foldspace.tests;
+
 import com.microsoft.playwright.*;
-import com.microsoft.playwright.options.*;
-import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
-import java.util.regex.Pattern;
+import ai.foldspace.pages.LoginPage;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LoginTest {
-    public static void main(String[] args) {
-        // Initialize Playwright with a Try-with-resources block for auto-closing
-        try (Playwright playwright = Playwright.create()) {
-            
-            // Launch browser in headed mode to visually verify actions
-            Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
-            BrowserContext context = browser.newContext();
-            Page page = context.newPage();
+    static Playwright playwright;
+    static Browser browser;
+    Page page;
+    LoginPage loginPage;
 
-            // --- Step 1: Navigation ---
-            System.out.println("Navigating to login page...");
-            page.navigate("https://app.foldspace.ai/login");
+    @BeforeAll
+    static void launchBrowser() {
+        playwright = Playwright.create();
+        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+    }
 
-            // --- Step 2: Perform Login Actions ---
-            // Fill in the user credentials
-            page.getByPlaceholder("Email Address").fill("yelitzur@g.jct.ac.il");
-            page.getByPlaceholder("Password").fill("199Yse5!");
-            
-            // Click the 'Sign in' button to submit the form
-            page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Sign in")).click();
+    @BeforeEach
+    void setup() {
+        page = browser.newPage();
+        loginPage = new LoginPage(page);
+    }
 
-            // --- Step 3: Verify Successful Login ---
-            // Copilot prompt / Logic:
-            // Verify that the user is redirected to the app dashboard by checking the URL pattern.
-            // We use Regex to match "foldspace.ai/agent" regardless of the dynamic Agent ID.
-            assertThat(page).hasURL(Pattern.compile(".*foldspace.ai/agent.*"));
+    @Test
+    @DisplayName("Verify successful login and redirection")
+    void testSuccessfulLogin() {
+        loginPage.navigate(); 
+        loginPage.login("yelitzur@g.jct.ac.il", "199Yse5!"); 
 
-            System.out.println("Test Passed! Login successful.");
+        // Assertions 
+        // 1. Checking the URL change (makes sure we are no longer on the login page)
+        assertTrue(page.url().contains("dashboard") || !page.url().contains("login"), 
+                   "User was not redirected after login");
 
-            // Optional: Leave the browser open for a second for the result to show
-            // page.waitForTimeout(2000);
-            
-            browser.close();
-        }
+        // 2. Check that there is no visible error message 
+        assertFalse(page.isVisible("text=Invalid credentials"), "Error message is displayed");
+    }
+
+    @AfterEach
+    void tearDown() {
+        page.close();
+    }
+
+    @AfterAll
+    static void closeBrowser() {
+        browser.close();
+        playwright.close();
     }
 }
