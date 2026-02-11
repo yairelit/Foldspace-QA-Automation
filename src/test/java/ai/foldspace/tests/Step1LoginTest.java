@@ -6,7 +6,7 @@ import org.junit.jupiter.api.*;
 import java.util.regex.Pattern;
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
-public class LoginTest {
+public class Step1LoginTest {
 
     static Playwright playwright;
     static Browser browser;
