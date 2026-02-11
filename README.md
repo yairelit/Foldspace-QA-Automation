@@ -35,8 +35,8 @@ Ensure you have the following installed:
 ### Installation
 1.  Clone the repository:
     ```bash
-    git clone <your-repo-url>
-    cd foldspace-qa-automation
+    git clone <https://github.com/yairelit/Foldspace-QA-Automation>
+    cd Foldspace-QA-Automation
     ```
 2.  Install dependencies and browsers:
     ```bash
