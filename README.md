@@ -1,7 +1,7 @@
 # Foldspace QA Automation Assignment
 
-This repository contains the automated testing solution for the Foldspace.ai home assignment.
-The project focuses on validating the **Login Flow** and the **Agentic UX** functionality using **Playwright** with **Java**.
+This repository contains the automated testing solution for the Foldspace.ai home assignment,
+using **Playwright** with **Java**.
 
 ## 🛠 Tech Stack
 * **Language:** Java (JDK 17+)
