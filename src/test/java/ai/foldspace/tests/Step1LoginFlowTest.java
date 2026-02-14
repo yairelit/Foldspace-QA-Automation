@@ -18,7 +18,7 @@ public class Step1LoginFlowTest {
     static void launchBrowser() {
         playwright = Playwright.create();
         // Launch options exactly as in your original code
-        page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Agent Studio")).click();
+         browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
     }
 
     @BeforeEach
@@ -38,7 +38,7 @@ public class Step1LoginFlowTest {
         // Verify that the user is redirected to the app dashboard by checking the URL
         assertThat(page).hasURL(Pattern.compile(".*foldspace.ai/agent.*"));
         // Validates user page entry by checking for the presence of a prominent UI element
-        assertThat(page.getByText("Agent Studio")).isVisible();
+        page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Agent Studio")).click();
         
         System.out.println("Test Passed!");
     }
