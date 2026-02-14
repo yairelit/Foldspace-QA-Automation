@@ -53,22 +53,25 @@ I didn't understand what he meant by future use with the request.
 
 ---
 
-## Scenario 3: Live Environment Context vs. Knowledge Base
-**Aspect:** UI Integration (DOM Context Awareness).
+## Scenario 3: Full Page Context & User Activity Awareness
+**Aspect:** UI Integration (DOM Context & Event Tracking).
 
-* **User Action:** The user asks about the specific environment where the bot is currently embedded: "What is the title of the page I am currently viewing?"
+* **User Action:** The user interacts with an element on the host page and then asks the agent: "Summarize what you see on this screen and tell me what was my last interaction."
+
 * **Manual Testing Steps:**
-    1. Embed the Foldspace SDK in a custom `index.html` with a specific title (e.g., "Foldspace QA Lab").
-    2. Change the page title dynamically or look at the live header.
-    3. Ask the agent: "What is the title of this website?"
-    4. Check if the agent pulls the answer from the live page (DOM) or defaults to generic info/Knowledge Base.
-* **Observations (Actual Behavior):**
-    If the Visibility API or DOM scraping isn't correctly configured, the agent might say "I don't know" or pull a title from a document in its Knowledge Base that is no longer relevant to the current page.
+    1. Open the English version of the custom `index.html` where the Foldspace SDK is embedded.
+    2. Click the **"Test Button"** to trigger the manual alert.
+    3. Open the Foldspace agent chat.
+    4. Ask the agent: "Based on the current page, what is the main content and what action did I just take?"
+    5. Verify if the agent identifies the specific headers (H1, H3), the descriptive text in the "Data (Example)" section, and the recent button click event.
 
-* **Findings after examination:**
-  The agent knew what the title on the page was and then did not provide any additional relevant information.
-  
-  <img width="1483" height="866" alt="image" src="https://github.com/user-attachments/assets/f4f8a948-88a4-4e6a-9f70-be9d62598087" />
+* **Potential Failures (Unexpected Behavior):**
+    * **Static Metadata Focus:** The agent identifies the page title (metadata) but fails to parse the body content or specific UI components.
+    * **Lack of Event Tracking:** The agent is "blind" to live JavaScript events, such as button clicks or form submissions, that occur outside the chat window.
+    * **KB Overriding Context:** The agent provides information from the Knowledge Base instead of describing the actual live environment it is embedded in.
+
+* **Test Findings (Actual Observations):**
+    Upon examination, the agent successfully identified the page title. However, it failed to provide additional relevant information regarding the specific page sections or the manual button click performed by the user. This indicates a gap in the real-time activity tracking of the Agentic UX flow.
 
 * **Expected Correct Behavior:**
-    The agent should use the Visibility/Context API to correctly identify the `<title>` tag of the host page and respond: "The title of the page you are on is 'Foldspace QA Lab'."
+    The agent should have full visibility into the host page's DOM and activity log. It should respond: "This page is a Foldspace Integration Test. It includes a section about data examples and a 'Test Button'. I noticed that you just performed a manual action by clicking that button."
