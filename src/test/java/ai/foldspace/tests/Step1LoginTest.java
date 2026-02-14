@@ -6,7 +6,7 @@ import org.junit.jupiter.api.*;
 import java.util.regex.Pattern;
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
-public class Step1LoginTest {
+public class Step1LoginFlowTest {
 
     static Playwright playwright;
     static Browser browser;
@@ -34,9 +34,11 @@ public class Step1LoginTest {
         loginPage.navigate();
         loginPage.login("yelitzur@g.jct.ac.il", "199Yse5!");
 
-        // --- Assertion (Exact logic from your code) ---
+        // --- Assertions  ---
         // Verify that the user is redirected to the app dashboard by checking the URL
         assertThat(page).hasURL(Pattern.compile(".*foldspace.ai/agent.*"));
+        // Validates user page entry by checking for the presence of a prominent UI element
+        assertThat(page.getByText("How can I help you today?")).isVisible();
 
         System.out.println("Test Passed!");
     }
