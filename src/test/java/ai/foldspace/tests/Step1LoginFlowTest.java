@@ -18,7 +18,7 @@ public class Step1LoginFlowTest {
     static void launchBrowser() {
         playwright = Playwright.create();
         // Launch options exactly as in your original code
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+        page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Agent Studio")).click();
     }
 
     @BeforeEach
