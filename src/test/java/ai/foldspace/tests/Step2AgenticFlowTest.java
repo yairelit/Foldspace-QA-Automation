@@ -1,85 +1,43 @@
 package ai.foldspace.tests;
 
-import com.microsoft.playwright.*;
 import ai.foldspace.pages.AgenticPage;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Test;
 import java.util.regex.Pattern;
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
-public class Step2AgenticFlowTest {
-
-    static Playwright playwright;
-    static Browser browser;
-    Page page;
-    AgenticPage agenticPage;
-
-    @BeforeAll
-    static void launchBrowser() {
-        playwright = Playwright.create();
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
-                .setHeadless(false)
-                .setSlowMo(1000));
-    }
-
-    @BeforeEach
-    void setup() {
-        // Initialize Context and Page for each test
-        BrowserContext context = browser.newContext();
-        page = context.newPage();
-        agenticPage = new AgenticPage(page);
-    }
+public class Step2AgenticFlowTest extends BaseTest {
 
     @Test
     void testAgenticFlowExact() {
-        // --- Step 1: Login Flow ---
+        AgenticPage agenticPage = new AgenticPage(page);
+
+        // --- Step 1: Login ---
         agenticPage.navigateToLogin();
         agenticPage.login("yelitzur@g.jct.ac.il", "199Yse5!");
-
-        // Validate successful login by checking the URL pattern
         assertThat(page).hasURL(Pattern.compile(".*foldspace.ai/agent.*"));
-        System.out.println("Login Successful. Starting Agentic Flow...");
 
-        // --- Step 2: Interact with the Agent ---
+        // --- Step 2: Interact ---
         agenticPage.clickNewAgent();
-
         int initialLength = agenticPage.getCurrentTextLength();
-
         agenticPage.sendPrompt("Hello! I have some problem for you to solve");
 
-        // --- Step 3: Wait for Response ---
+        // --- Step 3: Wait & Verify ---
         agenticPage.waitForThinkingIndicator();
-
-        // --- Step 4: Verification ---
         agenticPage.waitForTextToIncrease(initialLength);
 
-        // Final validation logic (Calculations kept in Test as in your original main method)
         int newLength = agenticPage.getCurrentTextLength();
         int lengthDifference = newLength - initialLength;
 
         System.out.println("Initial Length: " + initialLength + ", New Length: " + newLength);
 
-        if (lengthDifference > 0) {
-            if (lengthDifference > 30) {
-                System.out.println("Test Passed! The chatbot responded with a substantial message.");
-            } else {
-                System.out.println("Warning: The chatbot responded, but the message is very short.");
-            }
+        if (lengthDifference > 30) {
+            System.out.println("Test Passed! Substantial message received.");
+        } else if (lengthDifference > 0) {
+            System.out.println("Warning: Short response.");
         } else {
-            System.err.println("Test Failed! The chatbot did not respond (No text added).");
+            System.err.println("Test Failed: No response.");
         }
         
-        // Small pause to visualize result
         page.waitForTimeout(3000);
-    }
-
-    @AfterEach
-    void tearDown() {
-        page.close();
-    }
-
-    @AfterAll
-    static void closeBrowser() {
-        browser.close();
-        playwright.close();
     }
 }
