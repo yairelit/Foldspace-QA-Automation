@@ -20,7 +20,7 @@ public class Step2AgenticFlowTest extends BaseTest {
         // --- Step 2: Interact ---
         agenticPage.clickNewAgent();
         int initialLength = agenticPage.getCurrentTextLength();
-        agenticPage.sendPrompt("Hello! I have some problem for you to solve");
+        agenticPage.clickStarterPrompt();
 
         // --- Step 3: Wait & Verify ---
         agenticPage.waitForThinkingIndicator();
