@@ -4,6 +4,7 @@ import com.microsoft.playwright.*;
 import ai.foldspace.pages.LoginPage;
 import org.junit.jupiter.api.*;
 import java.util.regex.Pattern;
+import com.microsoft.playwright.options.AriaRole;
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public class Step1LoginFlowTest {
