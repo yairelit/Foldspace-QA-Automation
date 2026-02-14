@@ -35,10 +35,13 @@ public class Step1LoginFlowTest {
         loginPage.login("yelitzur@g.jct.ac.il", "199Yse5!");
 
         // --- Assertions  ---
+        
         // Verify that the user is redirected to the app dashboard by checking the URL
         assertThat(page).hasURL(Pattern.compile(".*foldspace.ai/agent.*"));
+        
         // Validates user page entry by checking for the presence of a prominent UI element
-        page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Agent Studio")).click();
+        Locator agentStudioBtn = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Agent Studio"));
+        assertThat(agentStudioBtn).isVisible();
         
         System.out.println("Test Passed!");
     }
