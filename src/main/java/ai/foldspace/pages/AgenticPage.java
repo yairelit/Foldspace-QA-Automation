@@ -36,10 +36,8 @@ public class AgenticPage {
         return (int) page.evaluate("document.body.innerText.length");
     }
 
-    public void sendPrompt(String text) {
-        System.out.println("Sending prompt to agent...");
-        page.getByRole(AriaRole.TEXTBOX).fill(text);
-        page.keyboard().press("Enter");
+    public void clickStarterPrompt() { 
+        page.getByText("Hello! Share with me an important insight").click();
     }
 
     // --- Step 3: Wait Logic ---
