@@ -21,15 +21,20 @@ public class Step2AgenticFlowTest extends BaseTest {
         agenticPage.clickNewAgent();
         int initialLength = agenticPage.getCurrentTextLength();
         agenticPage.clickStarterPrompt();
-
-        // --- Step 3: Wait & Verify ---
-        agenticPage.waitForThinkingIndicator();
-        agenticPage.waitForTextToIncrease(initialLength);
-
-        // --- Step 4: Verification ---
-        int newLength = agenticPage.getCurrentTextLength();
-        int lengthDifference = newLength - initialLength;
+        assertThat(page.getByText("Hello! Share with me an important insight")).isVisible();
         
+        // 3. עכשיו מודדים! הסוכן עדיין "חושב" ולא התחיל לענות
+        int lengthAfterPrompt = agenticPage.getCurrentTextLength();
+        
+        // 4. מחכים שהסוכן יסיים את פעולת ה-Thinking
+        agenticPage.waitForThinkingIndicator(); 
+        
+        // 5. מחכים שהטקסט יגדל (מוודא שהתגובה התחילה להיכתב)
+        agenticPage.waitForTextToIncrease(lengthAfterPrompt);
+        
+        // 6. מדידה סופית
+        int finalLength = agenticPage.getCurrentTextLength();
+        int agentNetResponse = finalLength - lengthAfterPrompt;
         System.out.println("Initial Length: " + initialLength + ", New Length: " + newLength);
         
         // Case 1 - the agent didnt respond
