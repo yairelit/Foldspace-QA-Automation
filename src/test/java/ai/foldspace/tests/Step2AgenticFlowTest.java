@@ -1,4 +1,14 @@
-@Test
+package ai.foldspace.tests;
+
+import ai.foldspace.pages.AgenticPage;
+import org.junit.jupiter.api.Test;
+import java.util.regex.Pattern;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
+
+public class Step2AgenticFlowTest extends BaseTest {
+
+    @Test
     void testAgenticFlowExact() {
         AgenticPage agenticPage = new AgenticPage(page);
 
@@ -11,7 +21,7 @@
         agenticPage.clickNewAgent();
         agenticPage.clickStarterPrompt(); 
         
-        // For accurate measurement
+        // For accurate measurement 
         assertThat(page.getByText("Hello! Share with me an important insight")).isVisible();
         
         // Base Line 
@@ -21,7 +31,7 @@
         agenticPage.waitForThinkingIndicator();
         agenticPage.waitForTextToIncrease(lengthAfterStarter);
 
-        // --- Step 4: Verification 
+        // --- Step 4: Verification ---
         int newLength = agenticPage.getCurrentTextLength();
         int lengthDifference = newLength - lengthAfterStarter;
         
@@ -39,3 +49,4 @@
 
         page.waitForTimeout(3000);
     }
+}
