@@ -32,7 +32,7 @@ Ensure you have the following installed:
 ## ⚙️ Configuration
 Currently, the test credentials are defined within the test files for simplicity.
 To run the tests with your own user:
-1.  Open `src/test/java/ai/foldspace/tests/AgenticFlowTest.java`.
+1.  Open `src/test/java/ai/foldspace/tests/Step2AgenticFlowTest.java`.
 2.  Update the `login` method arguments with your valid email and password inside the `testAgenticFlowExact` method.
 
 ## ▶️ Running the Tests
