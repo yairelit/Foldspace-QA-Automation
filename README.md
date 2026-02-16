@@ -4,11 +4,13 @@ This repository contains the automated testing solution for the Foldspace.ai hom
 using **Playwright** with **Java**.
 
 ## 🛠 Tech Stack
+
 * **Language:** Java (JDK 17+)
-* **Framework:** Playwright (for browser automation)
+* **IDE:** IntelliJ IDEA
+* **AI Assistance:** GitHub Copilot
+* **Framework:** Playwright
 * **Test Runner:** JUnit 5
 * **Build Tool:** Maven
-
 
 ##  🚀 Getting Started
 
