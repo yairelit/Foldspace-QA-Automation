@@ -71,7 +71,7 @@ Example of an incorrect calculation made by the agent (the correct amount is 115
 * **Test Findings (Actual Observations):**
     Upon examination, the agent successfully identified the page title. However, it failed to provide any additional relevant information regarding the specific page sections or the manual button click performed by the user. This indicates a gap in the real-time activity tracking of the Agentic UX flow.
   
-  <img width="1440" height="689" alt="image" src="https://github.com/user-attachments/assets/50ec005d-9293-4d09-a44b-c00fafc2100e" />
+  <img width="1573" height="852" alt="image" src="https://github.com/user-attachments/assets/3f357849-f079-4c72-aabe-0dd09db7b9f3" />
 
 * **Expected Correct Behavior:**
     The agent should have full visibility into the host page's DOM and activity log. It should respond: "This page is a Foldspace Integration Test. It includes a section about data examples and a 'Test Button'. I noticed that you just performed a manual action by clicking that button."
