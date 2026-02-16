@@ -29,7 +29,6 @@ Ensure you have the following installed:
     ```bash
     mvn clean install
     ```
-    *Note: Playwright will automatically attempt to download the necessary browser binaries during the first run.*
 
 ## ⚙️ Configuration
 Currently, the test credentials are defined within the test files for simplicity.
