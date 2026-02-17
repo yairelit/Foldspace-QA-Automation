@@ -15,7 +15,7 @@ public class Step1LoginFlowTest extends BaseTest {
         LoginPage loginPage = new LoginPage(page);
 
         loginPage.navigate();
-        loginPage.login(currentMail, currentPassward);
+        loginPage.login();
 
         // --- Assertions  ---
         // Verify that the user is redirected to the app dashboard by checking the URL
