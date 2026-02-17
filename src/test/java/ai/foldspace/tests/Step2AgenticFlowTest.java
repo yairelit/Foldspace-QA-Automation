@@ -15,7 +15,7 @@ public class Step2AgenticFlowTest extends BaseTest {
         // --- Step 1: Login ---
         
         agenticPage.navigateToLogin();
-        agenticPage.login("yelitzur@g.jct.ac.il", "199Yse5!");
+        agenticPage.login(currentMail, currentPassward);
         assertThat(page).hasURL(Pattern.compile(".*foldspace.ai/agent.*"));
 
         // --- Step 2: Interact ---
