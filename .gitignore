@@ -1,0 +1,25 @@
+# --- Security ---
+.env
+
+# --- Java/Maven ---
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# --- IntelliJ IDEA ---
+.idea/
+*.iml
+out/
+gen/
+
+# --- Playwright ---
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# --- System Files ---
+.DS_Store
+Thumbs.db
