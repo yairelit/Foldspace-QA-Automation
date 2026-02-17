@@ -14,7 +14,7 @@ public class LoginPage {
         page.navigate("https://app.foldspace.ai/login");
     }
 
-    public void login(String email, String password) {
+    public void login() {
         page.getByPlaceholder("Email Address").fill("input[name='email']", Config.EMAIL);
         page.getByPlaceholder("Password").fill("input[name='password']", Config.PASSWORD);
         page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Sign in")).click();
