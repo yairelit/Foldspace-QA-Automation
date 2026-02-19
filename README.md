@@ -12,6 +12,19 @@ using **Playwright** with **Java**.
 * **Test Runner:** JUnit 5
 * **Build Tool:** Maven
 
+## 📂 Project Structure
+
+The project follows a standard Maven directory structure, organized by the Page Object Model (POM) design pattern:
+
+```text
+src
+├── main/java/ai/foldspace
+│   ├── pages             # Page Objects representing UI components
+│   └── utils             # Helper classes (Dotenv loader, Playwright factory)
+└── test/java/ai/foldspace
+    └── tests             # Test suites and execution flows
+```
+
 ##  🚀 Getting Started
 
 ### Prerequisites
@@ -31,10 +44,16 @@ Ensure you have the following installed:
     ```
 
 ## ⚙️ Configuration
-Currently, the test credentials are defined within the test files for simplicity.
-To run the tests with your own user:
-1.  Open `src/test/java/ai/foldspace/tests/Step2AgenticFlowTest.java`.
-2.  Update the `login` method arguments with your valid email and password inside the `testAgenticFlowExact` method.
+
+The project uses environment variables to manage credentials securely and prevent sensitive data from being exposed in the source code.
+
+1. **Create a `.env` file** in the project root directory (this file is excluded from Git via `.gitignore`).
+2. **Copy the template** from `.env.example` into your new `.env` file:
+   ```env
+   USER_EMAIL=your_email@example.com
+   USER_PASSWORD=your_password
+   ```
+3. **The automation framework** will automatically pull these credentials during test execution.
 
 ## ▶️ Running the Tests
 
