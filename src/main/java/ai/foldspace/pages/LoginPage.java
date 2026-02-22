@@ -16,8 +16,8 @@ public class LoginPage {
     }
 
     public void login() {
-        page.getByPlaceholder("Email Address").fill("input[name='email']", Config.EMAIL);
-        page.getByPlaceholder("Password").fill("input[name='password']", Config.PASSWORD);
+        page.getByPlaceholder("Email Address").fill(Config.EMAIL);
+        page.getByPlaceholder("Password").fill(Config.PASSWORD);
         page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Sign in")).click();
     }
 }
