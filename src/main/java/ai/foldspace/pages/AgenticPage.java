@@ -29,7 +29,7 @@ public class AgenticPage {
 
     // --- Step 2: Agent Interaction Actions ---
     public void clickNewAgent() {
-        page.getByLabel("New Agent").click();
+        page.getByLabel("Yair Agent").click();
     }
 
     public int getCurrentTextLength() {
