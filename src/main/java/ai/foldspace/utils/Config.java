@@ -1,3 +1,5 @@
+package ai.foldspace.utils;
+
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class Config {
