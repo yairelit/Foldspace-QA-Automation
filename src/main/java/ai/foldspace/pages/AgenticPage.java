@@ -1,5 +1,6 @@
 package ai.foldspace.pages;
 
+import ai.foldspace.utils.Config
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.PlaywrightException;
 import com.microsoft.playwright.options.AriaRole;
@@ -18,9 +19,9 @@ public class AgenticPage {
         page.navigate("https://app.foldspace.ai/login");
     }
 
-    public void login(String email, String password) {
-        page.getByPlaceholder("Email Address").fill(email);
-        page.getByPlaceholder("Password").fill(password);
+    public void login() {
+        page.getByPlaceholder("Email Address").fill(Config.EMAIL);
+        page.getByPlaceholder("Password").fill(Config.PASSWORD);
         
         // Click 'Sign in'
         page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Sign in")).click();
